@@ -2,9 +2,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
-from poll.models import Question
+
 
 # 127.0.0.1:8000/poll - 전체 목록
+from polls.models import Question
+
+
 def index(request):
     question_list = Question.objects.all()
     context = {'question_list': question_list}
@@ -16,7 +19,7 @@ def index(request):
 def detail(request, question_id):
     # question = Question.objects.get(id=question_id)
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question_list': question}
+    context = {'question': question}
     return render(request, 'poll/detail.html', context)
     # return HttpResponse("You are looking at question %s." % question_id)
 
@@ -41,6 +44,6 @@ def vote(request, question_id):
 def result(request, question_id):
     # question = Question.objects.get(id=question_id)
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question_list': question}
+    context = {'question': question}
     return render(request, 'poll/result.html', context)
 
