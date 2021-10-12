@@ -1,0 +1,79 @@
+deactivate.bat (가상화 나가기)
+
+
+python -m venv .   (venv다운)명령프롬프트가서 치면 됨
+주의 - venv 한칸 띄고 . /찍을것 
+
+원하는 파일로 이동후 activate 입력하면 가상화가짐
+
+가상화 가서 pip install django (장고다운)
+python -m pip install --upgrade pip(장고업그레이드)
+
+
+django-admin startproject config .
+
+python manage.py runserver   -   서버실행
+
+python 파일명.py startapp 새로만들파일명  or  python manage.py startapp poll
+
+python manage.py migrate  <Applying... ..OK 여러줄 뜨면 됨>
+
+python manage.py makem파일명  or   python manage.py makemigrations
+그럼 - Create model Question문구가 뜨고 migrations에 0001_initial.py 파일이 생김
+
+python manage.py createsuperuser
+admin
+이메일주소패스하고 비밀번호12345 짧아도 y 누르면 ㅇㅋ
+
+셋팅파일에서 해야할 것
+언어코드,타임존, 인스텔앱스 추가
+셋팅파일에 들어가서 맨밑 언어코드 ko-kr, 타임존은 아시아/서울 고칠면 한국어 패치됨
+
+
+
+
+컨트롤 + c  중지명령
+
+파일 - 셋팅 - 파이썬 인터페이터 - 설정add클릭 - 익사이팅 인바이럴먼트 체크 후 - 스크립트파일파이썬exe 클릭후 ok
+
+
+
+MVC 패턴
+
+
+MTV 패턴
+Model - 데이터베이스(테이블) - QRM(객체관계매핑) . sql 안쓰고 class를 사용
+Template - html
+View - 제어함수(def)
+
+models.py - Question클래스(엔티티)
+? ? ?
+
+sql과 orm
+
+삽입 - insert(Question(question_text='백신', pub_date=timezone.now())
+검색(select)
+- Question.objects.all():전체 조회
+- Question.objects.get(id=1) : 1개 조회
+
+삭제(delete)
+- q.delete()
+
+장고 다큐먼트(장고 제어문 설명 사이트)
+
+{% csrf_token %} - 사이트링크를 변질시킨링크로 가는걸 못 가게 막아주는 명령어
+
+부트스트랩
+
+파이썬 애니웨어(웹사이트배포)무료
+아마존 AWS - 4500원 유료
+127.3.3.5
+네이버클라우드 - 5000원 유료
+
+python manage.py shell
+>>>from poll.models import Question, Choice
+>>> from django.utils import timezone
+>>> Question.objects.all()
+>>> q1 = Question.objects.get(id=1)
+>>> q1.question_text
+>>> q1.choice_set.all()

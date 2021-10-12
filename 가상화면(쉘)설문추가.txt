@@ -1,0 +1,25 @@
+가상화면 들어가서 설문 추가
+>>> python manage.py shell
+
+>>> from poll.models import Question, Choice
+>>> from django.utils import timezone
+
+>>> q3 = Question(question_text='당신이 좋아하는 영화 장르는 무엇인가요?', pub_date=timezone.now())
+>>> q3.save()
+>>> q3.id
+3
+>>> q3.question_text
+'당신이 좋아하는 영화 장르는 무엇인가요?'
+>>> ch = Choice(question=q3, choice_text='코믹', votes=0)
+>>> ch.save()
+>>> ch.choice_text
+'코믹'
+>>> ch = Choice(question=q3, choice_text='SF', votes=0)
+>>> ch.save()
+>>> ch = Choice(question=q3, choice_text='스릴러', votes=0)
+>>> ch.save()
+>>> q = Question.objects.get(id=3)
+>>> q.question_text
+'당신이 좋아하는 영화 장르는 무엇인가요?'
+>>> q.choice_set.all()
+<QuerySet [<Choice: 코믹>, <Choice: SF>, <Choice: 스릴러>]>
